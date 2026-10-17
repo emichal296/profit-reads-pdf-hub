@@ -1,46 +1,37 @@
-# Profit Reads PDF Portal — Google Drive upload edition
+# Profit Reads PDF Resource Hub — computer uploads to Google Drive
 
-This package contains the GitHub Pages download library and a Google Apps Script upload form that stores visitor-submitted PDFs in a private Google Drive folder.
+Visitors can download your published PDFs and submit PDFs from their own devices through a Google Form.
 
-## Important
-- GitHub Pages serves the download library; it cannot itself receive and store visitor uploads.
-- The upload form runs as a Google Apps Script web app and saves files into the folder ID configured in `apps-script/Code.gs`.
-- The folder must remain private. Do not share the folder publicly.
-- Public upload forms can be abused. The sample checks PDF extension/MIME type and a 10 MB limit, but these checks are not a full malware scanner or robust anti-spam system. Monitor the folder and disable the deployment if abused.
-- Google may restrict anonymous web-app access depending on account or organization settings. If the "Anyone" access option is unavailable, use a Google Form with file upload (respondents may need to sign in) or another approved service.
+## Visitors select files from their computer
+When a visitor opens the Google Form and reaches the File upload question, they can select a PDF using File Explorer on Windows or Finder on Mac. They do not need to put the PDF in their own Google Drive first.
 
-## Part A — Make a private Drive folder
-1. In Google Drive, create a folder named `Profit Reads PDF Submissions`.
-2. Keep its sharing set to **Restricted**.
-3. Open the folder and copy the ID from its URL. It is the text after `/folders/`.
-4. Keep this ID private; paste it only into your own Apps Script project, not into public HTML.
+**Important:** Google Forms file-upload questions require respondents to sign in to a Google Account. Google stores submitted files in the Google Drive of the account that owns the form.
 
-## Part B — Create the upload web app
-1. Visit https://script.google.com and create a **New project**.
-2. Rename it `Profit Reads PDF Uploads`.
-3. Open `apps-script/Code.gs` from this package. Copy all its contents into the Apps Script editor's `Code.gs`, replacing the starter code.
-4. In `Code.gs`, replace `PASTE_YOUR_PRIVATE_DRIVE_FOLDER_ID_HERE` with your folder ID.
-5. Click **+** beside Files, choose **HTML**, name the file `Upload` (without `.html`), then copy the contents of `apps-script/Upload.html` into it.
-6. Save the project.
-7. From the function dropdown, select `setup` and click **Run**. Review the permissions and authorize the script to create files in your Drive folder. The setup function verifies the folder and records its ID.
-8. Click **Deploy → New deployment**. Choose **Web app**.
-9. Set **Execute as** to **Me**. For access, choose **Anyone** only if available and appropriate for your account. This means anyone with the web app URL may submit files to your Drive, so treat that URL as public and monitor submissions.
-10. Click **Deploy** and copy the deployed web app URL ending in `/exec`. Do not use the `/dev` test URL.
-11. Test the URL in a private/incognito window. Submit a harmless test PDF and confirm it appears in your private Drive folder.
+## 1. Create the Google Form
+1. Sign in to the Google account that should own Profit Reads submissions.
+2. Go to https://forms.google.com and create a blank form.
+3. Title it `Profit Reads — Submit a PDF`.
+4. Add a question named `Upload your PDF` and change the question type to **File upload**.
+5. Allow **PDF** file types. Choose one file per response and a suitable file-size limit.
+6. Add a description: `Submit a PDF for review. Do not submit private or sensitive documents. Submissions are reviewed before anything is published.`
+7. Google Forms creates an upload folder in the form owner's Drive. Keep that folder private.
+8. Copy the responder link (not the editing link).
 
-## Part C — Connect it to GitHub Pages
-1. Open `script.js` in this package.
-2. Replace `PASTE_YOUR_APPS_SCRIPT_WEB_APP_URL_HERE` with your deployed `/exec` URL.
-3. Upload the updated `index.html`, `styles.css`, and `script.js` to the root of your existing GitHub repository, replacing the old files. Also upload the `apps-script` folder for your own reference if you wish; it is not needed by GitHub Pages.
-4. Wait for GitHub Pages to update. The “Open PDF submission form” button on the portal will open your Apps Script form.
-5. Your public PDF downloads continue to work from the `resources/` folder. Edit `index.html` to change the sample resource names and links to your real PDF files.
+## 2. Connect the form to GitHub
+1. Open `form-config.js`.
+2. Replace `PASTE_YOUR_GOOGLE_FORM_RESPONDER_LINK_HERE` with the responder link, keeping the quotation marks.
+3. Save the file.
+4. Upload/replace `form-config.js` in your GitHub repository and commit the change.
+5. Test the **Open PDF submission form** button on your published website.
 
-## Google Sites
-Embed your GitHub Pages URL using **Insert → Embed → By URL**. The upload button opens the Apps Script form in a new tab. You can also embed the deployed Apps Script web app directly into Google Sites using **Insert → Embed → By URL**.
+## 3. Add downloadable PDFs
+1. Put your own downloadable PDFs in `resources/`.
+2. Edit `index.html` to update resource titles, descriptions, and file paths.
+3. Upload the PDFs and updated `index.html` to GitHub.
 
-## Updating the app
-If you change the Apps Script server code, go to **Deploy → Manage deployments → Edit**, choose a new version, and deploy the update. The deployed `/exec` URL normally remains the same when you edit an existing deployment.
-
-Official documentation:
-- Apps Script web apps: https://developers.google.com/apps-script/guides/web
-- Apps Script Drive service: https://developers.google.com/apps-script/reference/drive
+## Privacy
+- Keep the Google Drive upload folder private.
+- Review every submitted PDF before publishing it.
+- Do not ask visitors to submit sensitive personal information.
+- Only publish PDFs you own or have permission to distribute.
+- Anonymous uploads are not supported by Google Forms' file-upload question; a different upload service/backend would be needed.

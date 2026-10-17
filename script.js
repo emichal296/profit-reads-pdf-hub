@@ -1,18 +1,20 @@
-// After deploying the Google Apps Script web app, paste its URL below.
-// Example URL ends in /exec. Do not paste a /dev test URL.
-const APPS_SCRIPT_WEB_APP_URL = "PASTE_YOUR_APPS_SCRIPT_WEB_APP_URL_HERE";
+const submitButton = document.getElementById("submit-pdf-button");
+const statusBox = document.getElementById("form-status");
 
-const uploadLink = document.getElementById("upload-link");
-if (uploadLink && APPS_SCRIPT_WEB_APP_URL.startsWith("https://script.google.com/") &&
-    !APPS_SCRIPT_WEB_APP_URL.includes("PASTE_YOUR_APPS_SCRIPT_WEB_APP_URL_HERE")) {
-  uploadLink.href = APPS_SCRIPT_WEB_APP_URL;
-  uploadLink.textContent = "Open PDF submission form";
-} else if (uploadLink) {
-  uploadLink.removeAttribute("href");
-  uploadLink.setAttribute("aria-disabled", "true");
-  uploadLink.style.opacity = "0.65";
-  uploadLink.addEventListener("click", (event) => {
-    event.preventDefault();
-    alert("The upload form is not connected yet. Follow the README instructions to deploy the Google Apps Script app and add its URL.");
-  });
-}
+submitButton.addEventListener("click", () => {
+  const formUrl = (typeof PROFIT_READS_GOOGLE_FORM_URL === "string")
+    ? PROFIT_READS_GOOGLE_FORM_URL.trim()
+    : "";
+
+  if (!formUrl || formUrl === "PASTE_YOUR_GOOGLE_FORM_RESPONDER_LINK_HERE") {
+    statusBox.textContent = "Setup not finished yet: create your Google Form, then paste its responder link into form-config.js and upload the updated file to GitHub.";
+    return;
+  }
+
+  if (!formUrl.startsWith("https://docs.google.com/forms/")) {
+    statusBox.textContent = "Please check form-config.js and use the responder link copied from Google Forms.";
+    return;
+  }
+
+  window.open(formUrl, "_blank", "noopener,noreferrer");
+});

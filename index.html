@@ -20,65 +20,52 @@
   <main>
     <section class="intro panel">
       <h2>Learn. Create. Grow.</h2>
-      <p>Find helpful Profit Reads resources in PDF format. You can also submit a PDF suggestion or resource using the upload form below.</p>
-      <p class="note"><strong>Privacy tip:</strong> Upload only PDFs you have permission to share. Do not upload private documents or sensitive personal information.</p>
+      <p>Find helpful Profit Reads resources in PDF format. You can also submit a PDF for review using our secure submission form.</p>
+      <p class="note"><strong>Privacy tip:</strong> Submit only PDFs you have permission to share. Do not upload private documents or sensitive personal information.</p>
     </section>
 
     <section class="panel">
       <div class="section-heading">
-        <div>
-          <p class="eyebrow">THE LIBRARY</p>
-          <h2>Download PDF resources</h2>
-        </div>
+        <div><p class="eyebrow">THE LIBRARY</p><h2>Download PDF resources</h2></div>
         <span class="pill">PDF only</span>
       </div>
-      <p class="muted">Add your PDFs to the <code>resources/</code> folder in this GitHub repository, then list them below. Replace these examples with your actual files.</p>
-      <div id="resource-list" class="resource-list">
+      <p class="muted">Add your own PDFs to the <code>resources/</code> folder in this GitHub repository, then update the example links below.</p>
+      <div class="resource-list">
         <article class="resource-card">
           <div class="pdf-icon">PDF</div>
-          <div class="resource-copy">
-            <h3>Beginner’s Guide to Online Earning</h3>
-            <p>Replace this example with your own resource PDF.</p>
-          </div>
+          <div class="resource-copy"><h3>Beginner’s Guide to Online Earning</h3><p>Replace this example with your own resource PDF.</p></div>
           <a class="button secondary" href="resources/beginners-guide-online-earning.pdf" download>Download</a>
         </article>
         <article class="resource-card">
           <div class="pdf-icon">PDF</div>
-          <div class="resource-copy">
-            <h3>30-Day Content Planner</h3>
-            <p>Replace this example with your content planner PDF.</p>
-          </div>
+          <div class="resource-copy"><h3>30-Day Content Planner</h3><p>Replace this example with your content planner PDF.</p></div>
           <a class="button secondary" href="resources/30-day-content-planner.pdf" download>Download</a>
         </article>
       </div>
-      <p class="small muted">If a sample link does not work, it means the example PDF has not been added yet.</p>
+      <p class="small muted">The sample download links will work after you upload PDFs with the matching filenames.</p>
     </section>
 
     <section class="panel" id="upload">
       <div class="section-heading">
-        <div>
-          <p class="eyebrow">CONTRIBUTE</p>
-          <h2>Submit a PDF</h2>
-        </div>
-        <span class="pill">PDF only · 10 MB max</span>
+        <div><p class="eyebrow">CONTRIBUTE</p><h2>Submit a PDF</h2></div>
+        <span class="pill">PDF submissions</span>
       </div>
-      <p>Choose a PDF from your device and send it for review. Submissions are not published automatically.</p>
-      <p>Upload your PDF through our secure submission form. Your file will be sent to the Profit Reads private review folder and will not be published automatically.</p>
-      <p><a class="button primary" id="upload-link" href="PASTE_YOUR_APPS_SCRIPT_WEB_APP_URL_HERE" target="_blank" rel="noopener">Open PDF submission form</a></p>
-      <p class="small muted">The button becomes active after you deploy the upload app and add its web app URL in <code>script.js</code>.</p>
+      <p>Choose a PDF directly from your computer using File Explorer (Windows) or Finder (Mac), then submit it through Google Forms. You do not need to put it in your own Google Drive first. Google stores submissions in the form owner's Drive. A Google Account sign-in is required.</p>
+      <button id="submit-pdf-button" class="button primary" type="button">Open PDF submission form</button>
+      <p id="form-status" class="status" role="status" aria-live="polite"></p>
       <div class="notice">
-        <strong>Privacy reminder</strong>
-        <p>Submit PDFs only if you have permission to share them. Do not upload private documents or sensitive personal information.</p>
+        <strong>One-time setup</strong>
+        <p>Create a Google Form with a required File upload question, restrict it to PDF files, then paste its responder link into <code>form-config.js</code>. Google requires uploaders to sign in to a Google Account for file-upload questions.</p>
       </div>
     </section>
 
     <section class="panel">
       <h2>How submissions work</h2>
       <ol class="steps">
-        <li>A visitor selects a PDF (10 MB or less).</li>
-        <li>The form checks that it is a PDF and displays its size.</li>
-        <li>Once you connect an upload service, the PDF can be sent to your private review area.</li>
-        <li>You review it before deciding whether to add it to the public library.</li>
+        <li>A visitor clicks “Open PDF submission form.”</li>
+        <li>They sign in to Google if prompted and choose a PDF.</li>
+        <li>Google Forms stores the submitted file in the form owner’s Google Drive.</li>
+        <li>You review the PDF and decide whether it belongs in the public library.</li>
       </ol>
     </section>
   </main>
@@ -87,6 +74,7 @@
     <p><strong>Profit Reads</strong> · Learn. Create. Grow.</p>
     <p class="small">Keep your library useful, safe, and respectful of copyright.</p>
   </footer>
+  <script src="form-config.js"></script>
   <script src="script.js"></script>
 </body>
 </html>
