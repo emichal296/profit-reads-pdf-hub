@@ -4,4 +4,4 @@
  * 2. Paste it between the quotation marks below.
  * 3. Save and upload this file to GitHub.
  */
-const PROFIT_READS_GOOGLE_FORM_URL = "PASTE_YOUR_GOOGLE_FORM_RESPONDER_LINK_HERE";
+const PROFIT_READS_GOOGLE_FORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLScR2-w_ng4uvsfYjm1eE6ijW4cOLKExjFhg4wh6Hq5VbO4nuw/viewform?usp=sharing&ouid=103231822863852040409";
